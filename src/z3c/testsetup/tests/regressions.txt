@@ -57,3 +57,29 @@ Be sure to launch the tests which are in a ``__init__.py`` file:
     Tearing down left over layers:
       Tear down zope.testing.testrunner.layer.UnitTests in N.NNN seconds.
     False
+
+
+Errors
+======
+
+    >>> path = os.path.join(REG_TESTS, 'doctest_setup_errors')
+    >>> defaults = [
+    ...     '--path', path,
+    ...     '--tests-pattern', '^init_tests$', '-vvvv',
+    ...     ]
+    >>> testrunner.run(defaults)
+    Test-module import failures:
+    <BLANKLINE>
+    Module: init_tests
+    <BLANKLINE>
+    Traceback (most recent call last):
+    ImportError: No module named dont
+    <BLANKLINE>
+    <BLANKLINE>
+    Running tests at level 1
+    <BLANKLINE>
+    Test-modules with import problems:
+      init_tests
+    Total: 0 tests, 0 failures, 0 errors in 0.000 seconds.
+    True
+

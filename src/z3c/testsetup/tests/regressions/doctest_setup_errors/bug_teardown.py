@@ -1,0 +1,6 @@
+"""
+
+:doctest:
+:teardown: dont.exists
+
+"""

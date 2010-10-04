@@ -1,0 +1,6 @@
+"""
+
+:doctest:
+:setup: dont.exists
+
+"""
