@@ -75,11 +75,22 @@ class SimpleDocTestSetup(DocTestSetup):
 
             setup = get_marker_from_file('setup', name) or self.setUp
             if setup is not None and isinstance(setup, basestring):
-                setup = get_attribute(setup)
+                try:
+                    setup = get_attribute(setup)
+                except Exception, e:
+                    from .exceptions import SetupException
+                    msg = "Wrong setup in %s: %s" % (name, e)
+                    raise SetupException(msg)
+
 
             teardown = get_marker_from_file('teardown', name) or self.tearDown
             if teardown is not None and isinstance(teardown, basestring):
-                teardown = get_attribute(teardown)
+                try:
+                    teardown = get_attribute(teardown)
+                except Exception, e:
+                    from .exceptions import SetupException
+                    msg = "Wrong teardown in %s: %s" % (name, e)
+                    raise SetupException(msg)
 
             if os.path.isabs(name):
                 # We get absolute pathnames, but we need relative ones...
